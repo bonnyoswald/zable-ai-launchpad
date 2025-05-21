@@ -1,27 +1,27 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { mic, messageSquare, mail, calendar } from 'lucide-react';
+import { Mic, MessageSquare, Mail, Calendar } from 'lucide-react';
 
 const services = [
   {
     title: "AI Voice Agents",
     description: "Intelligent voice assistants that handle calls, answer questions, and route important inquiries to your team.",
-    icon: mic
+    icon: Mic
   },
   {
     title: "Website Chatbots",
     description: "24/7 customer service chatbots that engage visitors, answer FAQs, and capture qualified leads.",
-    icon: messageSquare
+    icon: MessageSquare
   },
   {
     title: "Email & Calendar Automations",
     description: "Smart email responders that follow up with leads and schedule meetings based on your availability.",
-    icon: mail
+    icon: Mail
   },
   {
     title: "Smart Booking Engines",
     description: "Frictionless scheduling tools that integrate with your calendar and optimize your availability.",
-    icon: calendar
+    icon: Calendar
   }
 ];
 
