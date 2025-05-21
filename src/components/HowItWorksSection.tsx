@@ -22,26 +22,34 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="section-padding">
+    <section id="how-it-works" className="section-padding relative overflow-hidden">
+      <div className="blob-bg"></div>
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-center">How It Works</h2>
+        <h2 className="section-title text-center text-gradient">How It Works</h2>
         <p className="section-subtitle text-center">
           A simple, proven process to transform your customer interactions with AI.
         </p>
         
         <div className="flex flex-col md:flex-row gap-8 mt-12">
           {steps.map((step, index) => (
-            <Card key={index} className="flex-1 card-hover border-none shadow">
+            <Card 
+              key={index} 
+              className="flex-1 card-genz animate-[fade-in_0.6s_ease-out_forwards]" 
+              style={{ 
+                opacity: 0, 
+                animationDelay: `${0.3 + index * 0.15}s`,
+              }}
+            >
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="relative">
-                  <div className="w-16 h-16 rounded-full bg-zable-blue-accent flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 rounded-full bg-zable-blue-accent flex items-center justify-center mb-4 floating-animation">
                     <step.icon size={24} className="text-zable-blue-dark" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-blue-gradient flex items-center justify-center text-white font-bold">
+                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-blue-gradient flex items-center justify-center text-white font-bold animate-pulse">
                     {index + 1}
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-zable-blue-dark">{step.title}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-zable-blue-dark shine-animation">{step.title}</h3>
                 <p className="text-gray-600">{step.description}</p>
               </CardContent>
             </Card>

@@ -27,21 +27,31 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="what-we-offer" className="section-padding bg-zable-gray">
+    <section id="what-we-offer" className="section-padding bg-zable-gray relative overflow-hidden">
+      <div className="blob-bg"></div>
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-center">What We Offer</h2>
+        <h2 className="section-title text-center text-gradient">What We Offer</h2>
         <p className="section-subtitle text-center">
           Comprehensive AI solutions designed to transform how service businesses interact with customers.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
           {services.map((service, index) => (
-            <Card key={index} className="card-hover border-none">
+            <Card 
+              key={index} 
+              className="card-genz animate-[fade-in_0.6s_ease-out_forwards]"
+              style={{ 
+                opacity: 0, 
+                animationDelay: `${index * 0.1}s`,
+              }}
+            >
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-zable-blue-accent flex items-center justify-center mb-4">
+                <div className="w-16 h-16 rounded-full bg-zable-blue-accent flex items-center justify-center mb-4 floating-animation">
                   {<service.icon size={24} className="text-zable-blue-dark" />}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-zable-blue-dark">{service.title}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-zable-blue-dark shine-animation">
+                  {service.title}
+                </h3>
                 <p className="text-gray-600">{service.description}</p>
               </CardContent>
             </Card>
