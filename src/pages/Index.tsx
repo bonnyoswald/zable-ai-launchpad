@@ -8,6 +8,7 @@ import ROISection from '@/components/ROISection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import CalendlyWidget from '@/components/CalendlyWidget';
+import ChatbaseWidget from '@/components/ChatbaseWidget';
 
 const Index = () => {
   return (
@@ -23,6 +24,7 @@ const Index = () => {
       </main>
       <Footer />
       <CalendlyWidget />
+      <ChatbaseWidget />
     </div>
   );
 };
