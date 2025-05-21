@@ -1,7 +1,14 @@
 
+import { Linkedin, Phone, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CTASection = () => {
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.showPopupWidget('https://calendly.com/zacharyongeri121/30min');
+    }
+  };
+
   return (
     <section className="bg-blue-gradient text-white py-16 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full opacity-20">
@@ -17,12 +24,25 @@ const CTASection = () => {
         <p className="text-xl mb-8 max-w-2xl mx-auto animate-[fade-in_0.8s_ease-out_forwards]" style={{ animationDelay: '0.2s' }}>
           Ready to transform your business with AI? Let's talk about your specific needs.
         </p>
-        <Button 
-          className="bg-white text-zable-blue-dark hover:bg-opacity-90 px-8 py-6 text-lg font-medium rounded-full btn-genz animate-[fade-in_0.8s_ease-out_forwards]"
-          style={{ animationDelay: '0.4s' }}
-        >
-          Book a Demo
-        </Button>
+        
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 animate-[fade-in_0.8s_ease-out_forwards]" style={{ animationDelay: '0.4s' }}>
+          <Button 
+            className="bg-white text-zable-blue-dark hover:bg-opacity-90 px-8 py-6 text-lg font-medium rounded-full btn-genz flex items-center gap-2"
+            onClick={openCalendly}
+          >
+            <Calendar className="h-5 w-5" />
+            Schedule a Demo
+          </Button>
+          
+          <div className="flex items-center gap-4">
+            <a href="tel:0769139875" className="bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 group">
+              <Phone className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
+            </a>
+            <a href="https://www.linkedin.com/company/107052012" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 group">
+              <Linkedin className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

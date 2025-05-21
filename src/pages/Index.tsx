@@ -7,6 +7,7 @@ import BenefitsSection from '@/components/BenefitsSection';
 import ROISection from '@/components/ROISection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import CalendlyWidget from '@/components/CalendlyWidget';
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <CTASection />
       </main>
       <Footer />
+      <CalendlyWidget />
     </div>
   );
 };
