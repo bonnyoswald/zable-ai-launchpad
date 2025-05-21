@@ -21,18 +21,6 @@ const CalendlyWidget = () => {
     script.async = true;
     document.body.appendChild(script);
     
-    // Initialize Calendly Badge Widget
-    script.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initBadgeWidget({ 
-          url: 'https://calendly.com/zacharyongeri121/30min', 
-          text: 'Schedule time with me', 
-          color: '#04295e', 
-          textColor: '#ffffff' 
-        });
-      }
-    };
-    
     // Clean up on unmount
     return () => {
       document.head.removeChild(link);
