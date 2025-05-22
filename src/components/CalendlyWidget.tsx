@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 declare global {
   interface Window {
@@ -8,7 +8,20 @@ declare global {
 }
 
 const CalendlyWidget = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  
   useEffect(() => {
+    // Delay loading the widget to improve initial page load
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  useEffect(() => {
+    if (!isVisible) return;
+    
     // Add Calendly CSS
     const link = document.createElement('link');
     link.href = 'https://assets.calendly.com/assets/external/widget.css';
@@ -19,14 +32,17 @@ const CalendlyWidget = () => {
     const script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
+    script.defer = true;
     document.body.appendChild(script);
     
     // Clean up on unmount
     return () => {
       document.head.removeChild(link);
-      document.body.removeChild(script);
+      if (script.parentNode) {
+        document.body.removeChild(script);
+      }
     };
-  }, []);
+  }, [isVisible]);
   
   return null; // This component doesn't render anything
 };

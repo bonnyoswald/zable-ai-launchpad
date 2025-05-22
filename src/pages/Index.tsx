@@ -1,4 +1,5 @@
 
+import { lazy, Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -7,8 +8,10 @@ import BenefitsSection from '@/components/BenefitsSection';
 import ROISection from '@/components/ROISection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
-import CalendlyWidget from '@/components/CalendlyWidget';
-import ChatbaseWidget from '@/components/ChatbaseWidget';
+
+// Lazy load widgets to improve initial page load
+const CalendlyWidget = lazy(() => import('@/components/CalendlyWidget'));
+const ChatbaseWidget = lazy(() => import('@/components/ChatbaseWidget'));
 
 const Index = () => {
   return (
@@ -23,8 +26,10 @@ const Index = () => {
         <CTASection />
       </main>
       <Footer />
-      <CalendlyWidget />
-      <ChatbaseWidget />
+      <Suspense fallback={null}>
+        <CalendlyWidget />
+        <ChatbaseWidget />
+      </Suspense>
     </div>
   );
 };

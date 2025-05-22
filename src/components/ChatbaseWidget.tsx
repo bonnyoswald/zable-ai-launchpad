@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 declare global {
   interface Window {
@@ -8,8 +8,21 @@ declare global {
 }
 
 const ChatbaseWidget = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  
   useEffect(() => {
-    // Initialize Chatbase
+    // Delay loading the widget to improve initial page load
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    // Initialize Chatbase only when visible
     const script = document.createElement('script');
     script.innerHTML = `
       (function(){
@@ -31,6 +44,7 @@ const ChatbaseWidget = () => {
           script.src="https://www.chatbase.co/embed.min.js";
           script.id="XyqwgxkX9oS1CtvN1hkkB";
           script.domain="www.chatbase.co";
+          script.defer = true;
           document.body.appendChild(script)
         };
         
@@ -42,10 +56,10 @@ const ChatbaseWidget = () => {
       })();
     `;
     script.async = true;
+    script.defer = true;
     document.body.appendChild(script);
 
     return () => {
-      // Attempt to clean up if possible
       try {
         if (document.querySelector('script[id="XyqwgxkX9oS1CtvN1hkkB"]')) {
           const chatbotScript = document.querySelector('script[id="XyqwgxkX9oS1CtvN1hkkB"]');
@@ -54,14 +68,14 @@ const ChatbaseWidget = () => {
           }
         }
         
-        if (document.querySelector('script:contains("chatbase")')) {
-          document.body.removeChild(script);
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
         }
       } catch (e) {
         console.error("Failed to clean up Chatbase script:", e);
       }
     };
-  }, []);
+  }, [isVisible]);
 
   return null; // This component doesn't render anything visible
 };
