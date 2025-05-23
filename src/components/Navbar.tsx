@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +30,15 @@ const Navbar = () => {
         </div>
         
         <div className="hidden md:block">
-          <Button className="btn-primary">Book a Demo</Button>
+          <button 
+            data-cal-namespace="30min"
+            data-cal-link="zack-seal-zukqud/30min"
+            data-cal-config='{"layout":"month_view"}'
+            className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+          >
+            <Calendar className="h-4 w-4" />
+            Book a Demo
+          </button>
         </div>
         
         {/* Mobile menu button */}
@@ -76,9 +84,16 @@ const Navbar = () => {
             >
               Results
             </a>
-            <Button className="btn-primary w-full" onClick={() => setIsMenuOpen(false)}>
+            <button 
+              data-cal-namespace="30min"
+              data-cal-link="zack-seal-zukqud/30min"
+              data-cal-config='{"layout":"month_view"}'
+              className="bg-primary text-primary-foreground hover:bg-primary/90 w-full py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Calendar className="h-4 w-4" />
               Book a Demo
-            </Button>
+            </button>
           </div>
         </div>
       )}

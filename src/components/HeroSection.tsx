@@ -1,4 +1,5 @@
 
+import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
@@ -17,9 +18,16 @@ const HeroSection = () => {
               <Button className="btn-primary text-lg btn-genz animate-[fade-in_0.8s_ease-out_forwards]" style={{ animationDelay: '0.3s' }}>
                 See How It Works
               </Button>
-              <Button variant="outline" className="btn-secondary text-lg btn-genz animate-[fade-in_0.8s_ease-out_forwards]" style={{ animationDelay: '0.5s' }}>
+              <button 
+                data-cal-namespace="30min"
+                data-cal-link="zack-seal-zukqud/30min"
+                data-cal-config='{"layout":"month_view"}'
+                className="bg-transparent border border-input text-lg btn-genz animate-[fade-in_0.8s_ease-out_forwards] py-2 px-4 rounded-md inline-flex items-center justify-center"
+                style={{ animationDelay: '0.5s' }}
+              >
+                <Calendar className="mr-2 h-5 w-5" />
                 Book a Demo
-              </Button>
+              </button>
             </div>
           </div>
           
