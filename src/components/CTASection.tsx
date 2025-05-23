@@ -1,11 +1,54 @@
 
 import { Linkedin, Phone, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 const CTASection = () => {
+  useEffect(() => {
+    // Add a helper to check if Calendly is available
+    const checkCalendlyAndInitialize = () => {
+      if (window.Calendly) {
+        console.log("Calendly is available for use");
+      }
+    };
+    
+    // Check once Calendly script might be loaded
+    const timer = setTimeout(checkCalendlyAndInitialize, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   const openCalendly = () => {
     if (window.Calendly) {
-      window.Calendly.showPopupWidget('https://calendly.com/zacharyongeri121/30min');
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/zacharyongeri121/30min'
+      });
+      console.log("Opening Calendly popup");
+    } else {
+      console.log("Calendly not loaded yet");
+      // Show a toast message to inform the user
+      toast.info("Calendar is loading. Please try again in a moment.");
+      
+      // Try to load Calendly dynamically if not available
+      const link = document.createElement('link');
+      link.href = 'https://assets.calendly.com/assets/external/widget.css';
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+      
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      
+      script.onload = () => {
+        if (window.Calendly) {
+          window.Calendly.initPopupWidget({
+            url: 'https://calendly.com/zacharyongeri121/30min'
+          });
+        }
+      };
+      
+      document.body.appendChild(script);
     }
   };
 

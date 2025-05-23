@@ -35,6 +35,12 @@ const CalendlyWidget = () => {
     script.defer = true;
     document.body.appendChild(script);
     
+    // Initialize Calendly properly once script is loaded
+    script.onload = () => {
+      // Signal that Calendly is loaded and ready
+      console.log("Calendly script loaded successfully");
+    };
+    
     // Clean up on unmount
     return () => {
       document.head.removeChild(link);
