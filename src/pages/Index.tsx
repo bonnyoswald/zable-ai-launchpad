@@ -10,7 +10,7 @@ import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 
 // Lazy load widgets to improve initial page load
-const CalendlyWidget = lazy(() => import('@/components/CalendlyWidget'));
+const CalComWidget = lazy(() => import('@/components/CalComWidget'));
 const ChatbaseWidget = lazy(() => import('@/components/ChatbaseWidget'));
 
 const Index = () => {
@@ -27,7 +27,7 @@ const Index = () => {
       </main>
       <Footer />
       <Suspense fallback={null}>
-        <CalendlyWidget />
+        <CalComWidget />
         <ChatbaseWidget />
       </Suspense>
     </div>
